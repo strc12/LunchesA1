@@ -1,4 +1,5 @@
 <?php
+    header("Location: users.php");
     print_r($_POST);
     include_once("connection.php");
     $username=$_POST["surname"].".".$_POST["forename"][0];
