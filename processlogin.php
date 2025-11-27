@@ -1,5 +1,5 @@
 <?php
-    header("location: index.php");
+    //header("location: index.php");
     session_start();#start session if you want to use session variables
     print_r($_POST);
     array_map ("htmlspecialchars",$_POST);//santitises inputs so no HTML injection
@@ -9,7 +9,10 @@
     $stmt1->execute();
     while ($row = $stmt1->fetch(PDO::FETCH_ASSOC))
     {
-        if ($row["Password"]==$_POST["password"]){
+        $hashed=$row["Password"];
+        $attempt=$_POST["password"];
+        echo ($hashed.$attempt);
+        if (password_verify($attempt,$hashed)){
             echo("valid password");
             $_SESSION["firstname"]=$row["Forename"];
             $_SESSION["loggedinuser"]=$row["UserID"];
