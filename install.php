@@ -40,10 +40,25 @@
     $stmt1= $conn->prepare("DROP TABLE IF EXISTS tblfood;
     CREATE TABLE tblfood
     (FoodID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(20) NOT NULL,
+    Name VARCHAR(40) NOT NULL,
     Description VARCHAR(200) NOT NULL,
     Category VARCHAR(20) NOT NULL,
     Price DECIMAL (15,2) NOT NULL);
     ");
     $stmt1->execute();
+    
+    $stmt1=$conn->prepare("INSERT INTO tblfood 
+    (FoodID,Name,Description,Category,Price)
+    VALUES
+    (NULL,'Coke','black stuff','Drink',1.85),
+    (NULL,'Pepsi','black stuff','Drink',1.85),
+    (NULL,'cheese and pickle sandwich','dodgy food','Sandwich',3.85),
+    (NULL,'cheese sandwich','boring','Sandwich',3.5),
+    (NULL,'Olives','mediterranean things','Snack',0.85),
+    (NULL,'Nachos','mexican crisps','Snack',2.85)
+    ");
+    
+    
+    $stmt1->execute();
+
 ?>
