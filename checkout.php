@@ -6,7 +6,11 @@
 <?php
     session_start();
     include_once("connection.php");
-    $stmt1=$conn->prepare("SELECT * FROM tblbasket WHERE OrderID=:orderid ");
+    #use a join query to get food names from food table
+    #created aliases for ease of use
+    $stmt1=$conn->prepare("SELECT tblbasket.Quantity as qty,tblfood.Name as FN FROM tblbasket 
+    JOIN tblfood ON tblbasket.FoodID=tblfood.FoodID
+    WHERE OrderID=:orderid ");
     $stmt1->bindParam(":orderid",$_SESSION["lastorderid"]);
     $stmt1->execute();
     
