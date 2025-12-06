@@ -21,6 +21,7 @@
             echo($row["FN"]." ".$row["qty"]." ".$row["FP"]." - Total: ".$row["qty"]*$row["FP"]."<br>");
         }
     ?>
+    <a href="pay.php">Pay</a>
 <body>
     
 
