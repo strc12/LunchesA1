@@ -1,4 +1,5 @@
 <?php
+    header("Location: buyfood.php");
     session_start();
     print_r($_POST);
     include_once("connection.php");
