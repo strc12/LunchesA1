@@ -8,7 +8,8 @@
     include_once("connection.php");
     #use a join query to get food names from food table
     #created aliases for ease of use
-    $stmt1=$conn->prepare("SELECT tblbasket.Quantity as qty,tblfood.Name as FN FROM tblbasket 
+    $stmt1=$conn->prepare("SELECT tblbasket.Quantity as qty,tblfood.Name as FN, tblfood.Price as FP
+    FROM tblbasket 
     JOIN tblfood ON tblbasket.FoodID=tblfood.FoodID
     WHERE OrderID=:orderid ");
     $stmt1->bindParam(":orderid",$_SESSION["lastorderid"]);
@@ -16,7 +17,8 @@
     
     while($row=$stmt1->fetch(PDO::FETCH_ASSOC))
         {
-            print_r($row);
+            #print_r($row);
+            echo($row["FN"]." ".$row["qty"]." ".$row["FP"]." - Total: ".$row["qty"]*$row["FP"]."<br>");
         }
     ?>
 <body>
