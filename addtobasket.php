@@ -41,5 +41,11 @@
             $stmt1->execute();
         }else{
             echo("Item already in basket, updating quantity");
+            $stmt1= $conn->prepare("UPDATE tblbasket SET Quantity=Quantity+:quantity 
+            WHERE OrderID=:orderid AND FoodID=:foodid");
+            $stmt1->bindParam(":orderid",$_SESSION["lastorderid"]);
+            $stmt1->bindParam(":foodid",$_POST["foodid"]);
+            $stmt1->bindParam(":quantity",$_POST["qty"]);
+            $stmt1->execute();
         }
 ?>
